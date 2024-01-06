@@ -1,0 +1,75 @@
+@{
+ViewData["Title"] = "Kullanıcılar Sayfası";
+}
+@model IEnumerable<AppUser>
+
+    <style>
+        .table-container {
+            margin: auto;
+            /* Center the container horizontally */
+            width: 80%;
+            /* Adjust the width as needed */
+            overflow-x: auto;
+            /* Add horizontal scrollbar if the table is too wide */
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            /* Make the table fill the container */
+            margin-bottom: 20px;
+            /* Add margin for spacing */
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            /* Add border to cells */
+            padding: 8px;
+            /* Add padding for better appearance */
+            text-align: left;
+            /* Adjust text alignment if needed */
+        }
+
+        .btn {
+            text-decoration: none;
+            /* Remove underlines from buttons */
+            margin-right: 5px;
+            /* Add margin to separate buttons */
+        }
+    </style>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>FullName</th>
+                    <th>Email</th>
+                    <th>Action</th> <!-- Added a header for action column -->
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var item in Model){
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.UserName</td>
+                    <td>@item.FullName</td>
+                    <td>@item.Email</td>
+
+
+                    <td>
+                        <a asp-controller="Users" asp-action="Edit" asp-route-Id="@item.Id"
+                            class="btn btn-primary btn-sm">Edit</a>
+                        <a asp-controller="Users" asp-action="Delete" asp-route-Id="@item.Id"
+                            class="btn btn-danger btn-sm">Delete</a>
+                        
+                    </td>
+
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
