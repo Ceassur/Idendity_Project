@@ -8,6 +8,6 @@ namespace Identity_V2.Models
 {
     public class AppRole : IdentityRole
     {
-        
+        public string Roles { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Identity_V2.Controllers;
 
-[Authorize]
+
 
 public class HomeController : Controller
 {

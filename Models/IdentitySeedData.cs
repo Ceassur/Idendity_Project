@@ -26,12 +26,14 @@ namespace Identity_V2.Models
             var user = await userManager.FindByNameAsync(adminUser);
             if (user == null)
             {
+
                 user = new AppUser();
                 user.Email = "Admin@admin.com";
                 user.UserName = adminUser;
                 user.PhoneNumber = "5347231566";
-                user.FullName ="Berat Cesur";
+                user.FullName = "Berat Cesur";
                 user.IsActive = true;
+
                 await userManager.CreateAsync(user, adminPassword);
 
             }

@@ -48,6 +48,8 @@ ViewData["Title"] = "Kullanıcılar Sayfası";
                     <th>FullName</th>
                     <th>Email</th>
                     <th>Action</th> <!-- Added a header for action column -->
+
+
                 </tr>
             </thead>
             <tbody>
@@ -59,12 +61,14 @@ ViewData["Title"] = "Kullanıcılar Sayfası";
                     <td>@item.Email</td>
 
 
+
+
                     <td>
                         <a asp-controller="Users" asp-action="Edit" asp-route-Id="@item.Id"
                             class="btn btn-primary btn-sm">Edit</a>
                         <a asp-controller="Users" asp-action="Delete" asp-route-Id="@item.Id"
                             class="btn btn-danger btn-sm">Delete</a>
-                        
+
                     </td>
 
                 </tr>

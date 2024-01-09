@@ -3,11 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Identity_V2.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Identity_V2.Controllers
 {
+    [Authorize]
     public class RolesController : Controller
     {
         private readonly RoleManager<AppRole> _roleManager;
@@ -17,15 +19,12 @@ namespace Identity_V2.Controllers
 
             _roleManager = roleManager;
         }
-        public IActionResult Create()
-        {
-            return View();
-        }
+      
         public IActionResult Index()
         {
             return View(_roleManager.Roles);
         }
-        [HttpPost]
+             [HttpPost]
         public async Task<IActionResult> Create(AppRole model)
         {
 
@@ -36,6 +35,7 @@ namespace Identity_V2.Controllers
 
                 if (result.Succeeded)
                 {
+                    
                     return RedirectToAction("Index");
                 }
 
@@ -46,6 +46,11 @@ namespace Identity_V2.Controllers
             }
             return View(model);
         }
+          public IActionResult Create()
+        {
+            return View();
+        }
+      
 
     }
 

@@ -6,11 +6,8 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Identity_V2.Models
 {
-    public class AppUser : IdentityUser
+    public interface IEmailSender
     {
-        public string FullName { get; set; }
-        public bool IsActive { get; set; }
-        
-
+        Task SendEmailAsync(string email, string subject, string message);
     }
 }

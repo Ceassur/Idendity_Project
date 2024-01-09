@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@if(TempData["message"] != null){
+
+<div class="alert alert-warning">
+    @TempData["message"]
+</div>
+}
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -33,13 +39,14 @@
                                 Listesi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Users"
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Account"
                                 asp-action="Create">Kullanıcı Oluştur</a>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Roles"
                                 asp-action="Index">Roller</a>
-
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">LogOut</a>
                         </li>
                     </ul>
                 </div>
