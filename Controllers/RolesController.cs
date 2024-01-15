@@ -19,12 +19,17 @@ namespace Identity_V2.Controllers
 
             _roleManager = roleManager;
         }
-      
+
         public IActionResult Index()
         {
+            if (!User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Login", "Account");
+            }
             return View(_roleManager.Roles);
+
         }
-             [HttpPost]
+        [HttpPost]
         public async Task<IActionResult> Create(AppRole model)
         {
 
@@ -35,7 +40,7 @@ namespace Identity_V2.Controllers
 
                 if (result.Succeeded)
                 {
-                    
+
                     return RedirectToAction("Index");
                 }
 
@@ -46,11 +51,11 @@ namespace Identity_V2.Controllers
             }
             return View(model);
         }
-          public IActionResult Create()
+        public IActionResult Create()
         {
             return View();
         }
-      
+
 
     }
 

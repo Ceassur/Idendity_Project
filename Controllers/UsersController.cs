@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity_V2.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class UsersController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
@@ -24,16 +24,26 @@ namespace Identity_V2.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            if (!User.IsInRole("Admin"))
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            return View(_userManager.Users);
         }
-     
+
         public async Task<IActionResult> List()
         {
+            //BU ŞEKİLDE İF İLE DE KULLANALIABİLİ.. BELİRLİ BİR ROLE İÇİN AUTHORİZE İŞLEMİ YAPILIR..
+            // if (!User.IsInRole("Admin")) 
+            // {
+            //     return RedirectToAction("Login", "Account");
+            // }
+            return View(_userManager.Users);
             var userList = await _userManager.Users.ToListAsync();
             return View(userList);
         }
 
-      
+
 
 
         public async Task<IActionResult> Delete(string id)
@@ -46,7 +56,7 @@ namespace Identity_V2.Controllers
                 await _userManager.DeleteAsync(user);
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("List", "Users");
         }
     }
 }

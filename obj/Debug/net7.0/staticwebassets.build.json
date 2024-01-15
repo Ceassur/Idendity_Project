@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "8Q2VRVWd2R5Qv6nwUtRTdVt7uG7dNS339Sgv1YcQ3Ig=",
+  "Hash": "vFzYw3M62f0Py5Lure6dQjSY1FFnC5QoGcWdgljjEK0=",
   "Source": "Identity_V2",
   "BasePath": "_content/Identity_V2",
   "Mode": "Default",
@@ -1069,6 +1069,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\DELL\\OneDrive\\Masaüstü\\ASPNET-CORE\\Identity_V2\\wwwroot\\video.mp4",
+      "SourceId": "Identity_V2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\DELL\\OneDrive\\Masaüstü\\ASPNET-CORE\\Identity_V2\\wwwroot\\",
+      "BasePath": "_content/Identity_V2",
+      "RelativePath": "video.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\video.mp4"
     }
   ]
 }

@@ -7,6 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -18,9 +19,10 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-black border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Identity_V2</a>
+                <a class="navbar-brand text-light" asp-area="" asp-controller="Home" asp-action="Index">Identity_V2</a>
+
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -28,28 +30,47 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link btn btn-dark text-light mr-2" asp-area="" asp-controller="Home"
+                                asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home"
+                            <a class="nav-link btn btn-dark text-light mr-2" asp-area="" asp-controller="Home"
                                 asp-action="Privacy">Privacy</a>
                         </li>
+                        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin")){
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Users" asp-action="List">Kullanıcı
-                                Listesi</a>
+                            <a class="nav-link btn btn-dark text-light mr-2" asp-area="" asp-controller="Users"
+                                asp-action="List">Kullanıcı Listesi</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Account"
+                            <a class="nav-link btn btn-dark text-light mr-3" asp-area="" asp-controller="Account"
                                 asp-action="Create">Kullanıcı Oluştur</a>
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Roles"
+                            <a class="nav-link btn btn-dark text-light mr-2" asp-area="" asp-controller="Roles"
                                 asp-action="Index">Roller</a>
                         </li>
+                        }
+
+                    </ul>
+                    <ul class="navbar-nav ms-auto">
+                        @if (User.Identity.IsAuthenticated)
+                        {
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Account" asp-action="Logout">LogOut</a>
+                            <a class="nav-link text-dark">Merhaba, @User.Identity.Name</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-dark text-light" asp-controller="Account"
+                                asp-action="Logout">Çıkış Yap</a>
+                        </li>
+                        }
+
+
                     </ul>
                 </div>
+
+
             </div>
         </nav>
     </header>
@@ -59,11 +80,11 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <!-- <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - Identity_V2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>
+    </footer> -->
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
