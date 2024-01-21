@@ -1,0 +1,69 @@
+﻿<h1>Şifremi Değiştir</h1>
+
+<div>
+    <div class="mb-3">
+        <label>Şifreni Gir:</label>
+        <input id="password" class="form-control">
+    </div>
+
+    <div class="mb-3">
+        <label>Şifreni Tekrar Gir:</label>
+        <input id="passwordconfirm" class="form-control">
+    </div>
+    <div class="mb-3">
+        <button onclick="updatePassword()">Şifremi Güncelle</button>
+    </div>
+</div>
+
+<script>
+
+    function updatePassword() {
+        debugger;
+
+        var urlParams = new URLSearchParams(window.location.search);
+        var userId = urlParams.get('UserId');
+        var token = urlParams.get('Token');
+        var password = document.getElementById("password").value;
+        var passwordconfirm = document.getElementById("passwordconfirm").value;
+        var rolesId = document.getElementById("rolesId").href;
+
+
+        /*var xhr = new XMLHttpRequest();
+        xhr.open('GET', '/ForgotPassword/UpdatePassword?userId=' + userId + '&token=' + token + '&password=' + password + '&passwordconfirm=' + passwordconfirm);
+        xhr.send();
+        xhr.onload = function() {
+            if (xhr.status == 200) {
+                // Başarılı cevap
+                console.log('İsteğiniz başarıyla tamamlandı');
+            } else {
+                // Hata durumu
+                console.error('İstek sırasında bir hata oluştu');
+            }
+        };*/
+
+
+        $.ajax({
+            type: "GET",
+            url: "/ForgotPassword/UpdatePassword",
+            data: {
+                userId: userId,
+                token: token,
+                password: password,
+                passwordconfirm: passwordconfirm
+            },
+            success: function (data) {
+                console.log('İsteğiniz başarıyla tamamlandı');
+                window.location.href = '/Home/Index';
+            },
+            error: function (xhr, status, error) {
+                console.error('İstek sırasında bir hata oluştu');
+            }
+        });
+
+
+
+    }
+
+
+
+</script>

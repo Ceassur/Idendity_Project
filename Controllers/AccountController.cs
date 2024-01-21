@@ -1,7 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Mail;
 using System.Threading.Tasks;
+using System.Web;
 using Identity_V2.Models;
 using Identity_V2.ViewModels;
 using Microsoft.AspNetCore.Authentication;
@@ -14,6 +17,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Identity_V2.Controllers
 {
+
     public class AccountController : Controller
     {
 
@@ -85,7 +89,7 @@ namespace Identity_V2.Controllers
             }
             return View();
         }
-        [Authorize]
+
         public async Task<IActionResult> Create()
         {
             ViewBag.Roles = await _roleManager.Roles.Select(r => r.Name).ToListAsync();
@@ -128,7 +132,6 @@ namespace Identity_V2.Controllers
                     return RedirectToAction("Login", "Account");
 
 
-                    return RedirectToAction("Create");
                 }
 
                 foreach (IdentityError err in result.Errors)
@@ -175,8 +178,10 @@ namespace Identity_V2.Controllers
             return RedirectToAction("Login");
         }
 
-
-
-
+      
     }
+
+
+
+
 }

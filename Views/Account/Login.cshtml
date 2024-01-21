@@ -4,7 +4,7 @@
     Login User
 </h2>
 
-<form asp-action="Login" method="post">
+<form>
     <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="mb-3">
@@ -21,5 +21,33 @@
         <input asp-for="RememberMe" class="form-check-input">
         <label asp-for="RememberMe" class="form-check-label">Beni Hatırla</label>
     </div>
-    <button type="submit" class="btn btn-primary">Login</button>
+    <button type="submit" onclick="submitForm()" class="btn btn-primary">Login</button>
 </form>
+
+
+<script>
+    function submitForm() {
+        debugger;
+
+        debugger;
+        var model = {
+            Email: $('#Email').val(),
+            Password: $('#Password').val(),
+            RememberMe: $('#RememberMe').prop('checked')
+        };
+
+        $.ajax({
+            url: '/Account/Login',
+            type: 'POST',
+            data: model,
+            success: function (data) {
+                // Başarılı yanıt alındığında yapılacak işlemler
+                console.log(data);
+            },
+            error: function (error) {
+                // Hata durumunda yapılacak işlemler
+                console.log(error);
+            }
+        });
+    }
+</script>

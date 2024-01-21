@@ -1,51 +1,71 @@
+<!-- jQuery'yi ekleyin -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<!-- Sayfanızdaki form -->
 @model CreateViewModel
 
-<h2>
-    Create User
-</h2>
+<h1>Kullanıcı Oluştur</h1>
 
-<form asp-action="Create" method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
-
+<form id="createUserForm" asp-action="Create" method="post">
     <div class="mb-3">
-        <label asp-for="UserName"></label>
-        <input asp-for="UserName" class="form-control">
+        <label>UserName</label>
+        <input id="UserName" class="form-control">
     </div>
 
     <div class="mb-3">
-        <label asp-for="FullName"></label>
-        <input asp-for="FullName" class="form-control">
+        <label>FullName</label>
+        <input id="FullName" class="form-control">
     </div>
 
 
     <div class="mb-3">
-        <label asp-for="Email"></label>
-        <input asp-for="Email" class="form-control">
+        <label>Email</label>
+        <input id="Email" class="form-control">
     </div>
 
     <div class="mb-3">
-        <label asp-for="Password"></label>
-        <input asp-for="Password" class="form-control">
+        <label>Password</label>
+        <input id="Password" class="form-control">
     </div>
 
     <div class="mb-3">
-        <label asp-for="ConfirmPassword"></label>
-        <input asp-for="ConfirmPassword" class="form-control">
+        <label>ConfirmPassword</label>
+        <input id="ConfirmPassword" class="form-control" type="password">
     </div>
 
-    <div class="cards">
-        <div class="card-header">
-            Roller
-        </div>
-        <div class="card-body">
-            @foreach(var roleName in ViewBag.Roles){
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" name="SelectedRoles" value="@roleName" id="@roleName">
-                <label for="@roleName" class="form-check-label">@roleName</label>
-            </div>
-            }
-        </div>
-    </div>
+    <button type="button" id="submitBtn" class="btn btn-primary" onclick="submitForm()">Yeni Kullanıcı
+        Kaydet</button>
 
-    <button type="submit" class="btn btn-primary">Yeni Kullanıcı Kaydet</button>
+    <!-- JavaScript kodu -->
+    <script>
+        function submitForm() {
+
+            debugger;
+            var model = {
+                UserName: $('#UserName').val(),
+                FullName: $('#FullName').val(),
+                Email: $('#Email').val(),
+                Password: $('#Password').val(),
+                ConfirmPassword: $('#ConfirmPassword').val(),
+
+                SelectedRoles: $('input[name="SelectedRoles"]:checked').map(function () {
+                    return $(this).val();
+                }).get()
+            };
+
+            $.ajax({
+                url: '/Account/Create',
+                type: 'POST',
+                data: model,
+                success: function (data) {
+                    // Başarılı yanıt alındığında yapılacak işlemler
+                    console.log(data);
+                },
+                error: function (error) {
+                    // Hata durumunda yapılacak işlemler
+                    console.log(error);
+                }
+            });
+        }
+    </script>
 </form>
